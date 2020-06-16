@@ -70,15 +70,15 @@ def main(path, cls_true):
 
     other_count = 0
     for idx, img_path in enumerate(img_paths):
-        print(f'\rProcess: {idx+1}/{len(img_paths)}', end='')
+        print(f'\rProcess: {idx + 1}/{len(img_paths)}', end='')
         img_dir = op.dirname(img_path)
         res = req_classify(img_path)
         if res:
             if float(res['data']['result']['probability'][0]) > 0.9:
                 cls_img = res['data']['result']['classes'][0]
-                logger.info(f'{img_path} --> {cls_img} is not {cls_true}')
+                logger.info(f'{img_path} --> {cls_img}')
                 if cls_img != cls_true:
-                    logger.warning(f'{img_path} --> {cls_img} is not {cls_true}' )
+                    logger.warning(f'{img_path} --> {cls_img} is not {cls_true}')
                     shutil.move(img_dir, op.join(others_dir, op.basename(img_dir)))
                     other_count += 1
     print(f'\nothers_count:{other_count}')
