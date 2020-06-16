@@ -85,5 +85,5 @@ def main(path, cls_true):
 
 
 if __name__ == '__main__':
-    main('billinfo/xjzp_zheng1/', 'xjzp_zheng')  # 目录，平台返回类型值
-    # main(sys.argv[1],sys.argv[2])
+    # main('billinfo/xjzp_zheng1/', 'xjzp_zheng')  # 目录，平台返回类型值
+    main(sys.argv[1], sys.argv[2])

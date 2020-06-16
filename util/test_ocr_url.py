@@ -45,8 +45,8 @@ def upload_file_1():
             'others': '其他凭证',
         }
 
-        p = classes.keys()
-        p = ['xjzp_zheng']
+        p = list(classes.keys())
+        # p = ['xjzp_zheng']
         res = {'data': {'result': {'probability': [0.9999], 'classes': [random.choice(p)]}}, 'status': 0}
         res = json.dumps(res, ensure_ascii=False)
         print()
