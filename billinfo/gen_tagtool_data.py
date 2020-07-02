@@ -42,5 +42,5 @@ def main(root_dir):
 
 
 if __name__ == '__main__':
-    main('xjzp_zheng1')
-    # main(sys.argv[1])
+    # main('xjzp_zheng1')
+    main(sys.argv[1])

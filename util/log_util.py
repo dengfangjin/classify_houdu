@@ -54,8 +54,9 @@ class Log(object):
 
     def show(self, log_level, message):
         frame, fn, line, fucname, code, un = inspect.stack()[2]
-        return '{} - {} - [{} {} {}]: {}'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),
-                                                 log_level.upper(), os.path.basename(fn), line, fucname, message)
+        return '{} - {} - [{} {} {}]: {}'.format(log_level.upper(),
+                                                 datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),
+                                                 os.path.basename(fn), line, fucname, message)
 
     def info(self, message):
         self.__loggers[logging.INFO].info(self.show('INFO', message))

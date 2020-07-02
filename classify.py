@@ -13,6 +13,7 @@ import requests
 import datetime
 from requests_toolbelt import MultipartEncoder
 from util.log_util import logger
+from dir_cls import dir_cls
 
 env = 0  # SIT:0  PROD:1
 classify_url_houdu = r'http://10.7.139.170:30069?apikey=de7b1e90-6312-443a-8f88d0f472b1f228'
@@ -67,6 +68,13 @@ def main(path, cls_true):
             for f in os.listdir(op.join(mark_dir, d)):
                 if len(re.findall(img_format, f)) > 0:
                     img_paths.append(op.join(mark_dir, d, f))
+    if 0:  # 是否处理已标注数据？默认不处理
+        marked_dir = op.join(path, 'marked')
+        for d in os.listdir(marked_dir):
+            if op.isdir(op.join(marked_dir, d)):
+                for f in os.listdir(op.join(marked_dir, d)):
+                    if len(re.findall(img_format, f)) > 0:
+                        img_paths.append(op.join(marked_dir, d, f))
 
     other_count = 0
     for idx, img_path in enumerate(img_paths):
@@ -84,6 +92,16 @@ def main(path, cls_true):
     print(f'\nothers_count:{other_count}')
 
 
+def process():
+    len_keys = len(dir_cls.keys())
+    count_num = 1
+    for k, v in dir_cls.items():
+        print(f'{count_num}/{len_keys} : {k}:{v}')
+        main(k, v)
+        count_num += 1
+
+
 if __name__ == '__main__':
     # main('billinfo/xjzp_zheng1/', 'xjzp_zheng')  # 目录，平台返回类型值
-    main(sys.argv[1], sys.argv[2])
+    # main(sys.argv[1], sys.argv[2])
+    process()

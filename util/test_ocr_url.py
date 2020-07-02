@@ -22,9 +22,15 @@ def hello_world():
     return 'hello,world'
 
 
+cout_req = 1
+
+
 @app.route('/classify', methods=['GET', 'POST'])
 def upload_file_1():
     time.sleep(0.01)
+    global cout_req
+    print(f'count:{cout_req}')
+    cout_req += 1
     dirname = 'save_files_dir_multipart'
     if not os.path.exists(dirname):
         os.mkdir(dirname)
@@ -50,10 +56,10 @@ def upload_file_1():
         res = {'data': {'result': {'probability': [0.9999], 'classes': [random.choice(p)]}}, 'status': 0}
         res = json.dumps(res, ensure_ascii=False)
         print()
-        print('文字识别：')
+        print('票据分类：')
         print('params:', params)
         print('fn:', fn)
-        print('res', res)
+        print('res:', res)
         print()
         return res
 
